@@ -7,14 +7,18 @@
 <style>
   html,body{margin:0;padding:0;background:#0b0a12;}
   body{overflow-x:hidden;}
+  #bbv-outer{min-height:100vh;}
 </style>
 </head>
 <body>
 <div id="bbv-outer"><div id="bbv-root">
 <style>
   #bbv-outer{
-    background:#0b0a12;
     margin:0; padding:0;
+    background:
+      radial-gradient(1400px 700px at 78% -8%, rgba(139,92,246,.28), transparent 60%),
+      radial-gradient(1100px 600px at 8% 16%, rgba(109,40,217,.22), transparent 58%),
+      #0b0a12;
   }
   #bbv-root{
     --bg:#0b0a12; --bg2:#12101d; --panel:#171426; --panel2:#1e1a30;
@@ -26,10 +30,7 @@
     max-width:1100px; margin:0 auto;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:var(--txt);
-    background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(139,92,246,.25), transparent 60%),
-      radial-gradient(900px 500px at -10% 20%, rgba(109,40,217,.20), transparent 55%),
-      var(--bg);
+    background:transparent;
     line-height:1.5; -webkit-font-smoothing:antialiased;
     overflow:hidden;
   }
@@ -115,6 +116,12 @@
   #bbv-root .soon-card p{font-size:14px;color:var(--muted);margin-bottom:14px;}
   #bbv-root .soon-card a{color:var(--accent2);text-decoration:none;font-size:14px;font-weight:600;}
   #bbv-root .soon-card a:hover{color:var(--accent);}
+  /* active in-development card (BundleDiff) */
+  #bbv-root .dev-card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);}
+  #bbv-root .dev-badge{color:var(--accent2);border-color:var(--line);background:rgba(139,92,246,.12);}
+  #bbv-root .mini-list{list-style:none;margin-top:4px;}
+  #bbv-root .mini-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--muted);padding:5px 0;}
+  #bbv-root .mini-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent2);margin-top:6px;flex-shrink:0;box-shadow:0 0 8px var(--accent);}
 
   @media(max-width:780px){
     #bbv-root .nav-links{display:none;}
@@ -127,7 +134,7 @@
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="brand"><span class="logo"><span></span></span> BBV&nbsp;Studio</div>
+  <div class="brand">BBV&nbsp;Studio</div>
   <div class="nav-links">
     <a href="#product">Products</a>
     <a href="#features">Features</a>
@@ -179,10 +186,15 @@
   </div>
 
   <div class="soon-grid">
-    <div class="soon-card">
-      <span class="soon-badge">Coming soon</span>
-      <h4>The next tool</h4>
-      <p>We're already working on what's next. Same idea — one job, done well.</p>
+    <div class="soon-card dev-card">
+      <span class="soon-badge dev-badge">In development</span>
+      <h4>BundleDiff</h4>
+      <p>Compares two versions of raw AssetBundles and shows what changed, what will break clients on the old version, and how much data gets re-downloaded for no reason. For projects that don't use Addressables.</p>
+      <ul class="mini-list">
+        <li>Catalog diff — added, removed, changed assets</li>
+        <li>Breaking-change &amp; missing-script detection</li>
+        <li>Update impact — needless rebuilds &amp; download size</li>
+      </ul>
     </div>
     <div class="soon-card">
       <span class="soon-badge">Coming soon</span>
